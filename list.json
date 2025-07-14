@@ -3,6 +3,6 @@
     "src/centertext.css"
   ],
   "components": [
-    "src/cetnertext.js"
+    "src/centertext.js"
   ]
 }
