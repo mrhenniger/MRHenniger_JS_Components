@@ -1,0 +1,71 @@
+@import "../css/basic.scss";
+
+centertext {
+  flex-grow: 1;
+  flex-shrink: 0;
+  border: red solid 1px;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: stretch;
+  align-content: stretch;
+
+  .outer {
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+    .inner {
+      flex-grow: 0;
+      flex-shrink: 0;
+
+      font-weight: $fontNorm;
+      color: $color-white;
+      font-size: $font20;
+      font-family: $fontArial;
+    }
+  }
+
+  &.light {
+    .outer {
+      background-color: $color-gray-light;
+      .inner {
+        background-color: $color-gray;
+        color: $color-gray-dark;
+      }
+    }
+  }
+
+  &.medium {
+    .outer {
+      background-color: $color-gray;
+      .inner {
+        background-color: $color-gray-dark;
+        color: $color-black;
+      }
+    }
+  }
+
+  &.dark {
+    .outer {
+      background-color: $color-gray-dark;
+      .inner {
+        background-color: $color-charcoal;
+        color: $color-white;
+      }
+    }
+  }
+}

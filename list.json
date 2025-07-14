@@ -1,10 +1,8 @@
 {
   "css": [
+    "src/centertext.css"
   ],
-  "simple": [
-    "xxx.js",
-    "xxx.css"
-  ],
-  "dialogs": [
+  "components": [
+    "src/cetnertext.js"
   ]
 }

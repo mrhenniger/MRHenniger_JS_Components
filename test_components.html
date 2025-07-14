@@ -5,22 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MRHenniger JS Utilities - Test: Strings</title>
-    <link rel="stylesheet" type="text/css" href="basic.css">
-    <script src="https://github.com/mrhenniger/MRHenniger_JS_Utilities/strings.js"></script>
-    <script src="https://github.com/mrhenniger/MRHenniger_JS_Utilities/dom.js"></script>
-    <script src="https://github.com/mrhenniger/MRHenniger_JS_Utilities/domCollection.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/basic.css">
+    <script src="../MRHenniger_JS_Utilities/strings.js"></script>
+    <script src="../MRHenniger_JS_Utilities/dom.js"></script>
+    <script src="../MRHenniger_JS_Utilities/domCollection.js"></script>
     <!-- <script src="files.js"></script> -->
-    <script src="https://github.com/mrhenniger/MRHenniger_JS_Utilities/promises.js"></script>
-    <script src="https://github.com/mrhenniger/MRHenniger_JS_Utilities/components.js"></script>
+    <script src="../MRHenniger_JS_Utilities/promises.js"></script>
+    <script src="../MRHenniger_JS_Utilities/components.js"></script>
     <!-- <script src="ComponentsTest.js"></script> -->
-    <script src="https://github.com/mrhenniger/MRHenniger_JS_Utilities/testUtilities.js"></script>
+    <script src="../MRHenniger_JS_Utilities/testUtilities.js"></script>
+
+    <script src="src/CenterText.js"></script>
+    <link rel="stylesheet" type="text/css" href="src/CenterText.css">
+
     <script>
         function pageLoaded() {
             testLabel('Component Creation');
             let body = new Dom('body');
-            let parent = body.find('.theScratch').first();
+            let scratch = body.find('.theScratch').first();
+            scratch.innerHTMLWipe();
 
-            let subject = new ComponentsTest(parent);
+            scratch.innerHTML(`<div class="container"></div>`);
+            let container = scratch.find('.container').first();
+            container.css('width', '200px').css('height', '100px');//.css('border', '1px solid red');
+            let subject = new CenterText(container, {"txt": "original", "style": "dark"});
+            testCompare("Test 1a - CenterText", 'original', container.find('centertext .outer .inner').first().innerHTML().str());
+
+            subject.reviseData({"txt": "revised"});
+            testCompare("Test 1b - CenterText", 'revised', container.find('centertext .outer .inner').first().innerHTML().str());
+
+
+
+
+
+            /* WORK IN PROGRESS - Working towards having the componnts recognized and correctly rendered when added to the don with innerHTML
+            scratch.innerHTMLWipe();
+            scratch.innerHTML(`<CenterText txt="dom text"/>`);
+            subject = scratch.find('centertext').first();
+debugger;
+            subject.componentInstantiate();
+debugger;
+
+
+//            scratch.innerHTMLWipe();
+//            scratch.innerHTML('<subject thinga="123" thingb="abc"/>');
+//            let target = scratch.find('subject').first();
+//            let atts = target.atts();
+//            testCompare("Test 1a - CenterText)", 'original', container.find('centertext .outer .inner').first().innerHTML().str());
+            */
         }
     </script>
 </head>

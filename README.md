@@ -20,6 +20,9 @@ https://www.linkedin.com/in/mikehenniger/
 
 Revision log...
 
+V1 - July 13 -      Added the first component, Center Text.  Simply centers text in a div.  Has some simple styling
+                    enums, but they are not fancy.
+
 V0 - July 5 -       Just getting something under source control.  Nothing to see here... yet.  :-)
 
 2025:  Happy new year!!!!!!!
