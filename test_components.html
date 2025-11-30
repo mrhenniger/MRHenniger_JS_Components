@@ -17,8 +17,11 @@
 
     <script src="src/CenterText.js"></script>
     <link rel="stylesheet" type="text/css" href="src/CenterText.css">
+    <link rel="stylesheet" type="text/css" href="../MRHenniger_JS_Utilities/basic.css">
 
     <script>
+        customElements.define("center-text", CenterText);
+
         function pageLoaded() {
             testLabel('Component Creation');
             let body = new Dom('body');
@@ -28,31 +31,30 @@
             scratch.innerHTML(`<div class="container"></div>`);
             let container = scratch.find('.container').first();
             container.css('width', '200px').css('height', '100px');//.css('border', '1px solid red');
-            let subject = new CenterText(container, {"txt": "original", "style": "dark"});
-            testCompare("Test 1a - CenterText", 'original', container.find('centertext .outer .inner').first().innerHTML().str());
 
-            subject.reviseData({"txt": "revised"});
-            testCompare("Test 1b - CenterText", 'revised', container.find('centertext .outer .inner').first().innerHTML().str());
+            container.innerHTML(`<center-text style="dark">dom created 1</center-text>`);
+            let subjectDom = container.find('center-text').first();
+            let subjectObj = new CenterText(null, null, subjectDom);
+            testCompare("Test 1a - CenterText", 'dom created 1', subjectDom.find('.inner').first().innerHTML().str());
+            subjectObj.reviseData({"txt": "revised 1"});
+            testCompare("Test 1b - CenterText", 'revised 1', subjectDom.find('.inner').first().innerHTML().str());
 
+            container.innerHTMLWipe();
+            container.innerHTML(`<center-text/>`);
+            subjectDom = container.find('center-text').first();
+            subjectObj = new CenterText(null, null, subjectDom);
+            testCompare("Test 2a - CenterText", '', subjectDom.find('.inner').first().innerHTML().str());
+            subjectObj.reviseData({"txt": "revised 2"});
+            subjectObj.getCore().addClass('medium');
+            testCompare("Test 2b - CenterText", "revised 2", subjectDom.find('.inner').first().innerHTML().str());
 
+            container.innerHTMLWipe();
+            subjectObj = new CenterText(container, {"txt": "js created", "style": "dark"});
+            subjectDom = subjectObj.getCore();
+            testCompare("Test 3a - CenterText", 'js created', subjectDom.find('.inner').first().innerHTML().str());
+            subjectObj.reviseData({"txt": "revised"});
+            testCompare("Test 3b - CenterText", 'revised', subjectDom.find('.inner').first().innerHTML().str());
 
-
-
-            /* WORK IN PROGRESS - Working towards having the componnts recognized and correctly rendered when added to the don with innerHTML
-            scratch.innerHTMLWipe();
-            scratch.innerHTML(`<CenterText txt="dom text"/>`);
-            subject = scratch.find('centertext').first();
-debugger;
-            subject.componentInstantiate();
-debugger;
-
-
-//            scratch.innerHTMLWipe();
-//            scratch.innerHTML('<subject thinga="123" thingb="abc"/>');
-//            let target = scratch.find('subject').first();
-//            let atts = target.atts();
-//            testCompare("Test 1a - CenterText)", 'original', container.find('centertext .outer .inner').first().innerHTML().str());
-            */
         }
     </script>
 </head>

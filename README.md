@@ -20,9 +20,13 @@ https://www.linkedin.com/in/mikehenniger/
 
 Revision log...
 
-V1 - July 13 -      Added the first component, Center Text.  Simply centers text in a div.  Has some simple styling
-                    enums, but they are not fancy.
+V2 - Nov 30 - Converted Center Text to comply with the new version of Component.ts which is now using web components as
+              a base.  It is anticipated there will be further changes moving some functionality from CenterText.ts to 
+              Component.ts.
 
-V0 - July 5 -       Just getting something under source control.  Nothing to see here... yet.  :-)
+V1 - July 13 - Added the first component, Center Text.  Simply centers text in a div.  Has some simple styling enums, 
+               but they are not fancy.
+
+V0 - July 5 - Just getting something under source control.  Nothing to see here... yet.  :-)
 
 2025:  Happy new year!!!!!!!

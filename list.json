@@ -1,8 +1,8 @@
 {
   "css": [
-    "src/centertext.css"
+    "CenterText.css"
   ],
-  "components": [
-    "src/centertext.js"
+  "js": [
+    "CenterText.js"
   ]
 }

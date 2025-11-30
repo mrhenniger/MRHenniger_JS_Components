@@ -1,9 +1,8 @@
 @import "../css/basic.scss";
 
-centertext {
+center-text {
   flex-grow: 1;
-  flex-shrink: 0;
-  border: red solid 1px;
+  flex-shrink: 1;
 
   width: 100%;
   height: 100%;
@@ -12,60 +11,40 @@ centertext {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
-  align-items: stretch;
-  align-content: stretch;
+  align-items: center;
+  align-content: center;
 
-  .outer {
+  .inner {
     flex-grow: 0;
     flex-shrink: 0;
 
-    width: 100%;
-
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-
-    .inner {
-      flex-grow: 0;
-      flex-shrink: 0;
-
-      font-weight: $fontNorm;
-      color: $color-white;
-      font-size: $font20;
-      font-family: $fontArial;
-    }
+    font-weight: $fontNorm;
+    color: $color-white;
+    font-size: $font20;
+    font-family: $fontArial;
   }
 
   &.light {
-    .outer {
-      background-color: $color-gray-light;
-      .inner {
-        background-color: $color-gray;
-        color: $color-gray-dark;
-      }
+    background-color: $color-gray-light;
+    .inner {
+      background-color: $color-gray;
+      color: $color-gray-dark;
     }
-  }
+ }
 
   &.medium {
-    .outer {
-      background-color: $color-gray;
-      .inner {
-        background-color: $color-gray-dark;
-        color: $color-black;
-      }
+    background-color: $color-gray;
+    .inner {
+      background-color: $color-gray-dark;
+      color: $color-black;
     }
   }
 
   &.dark {
-    .outer {
-      background-color: $color-gray-dark;
-      .inner {
-        background-color: $color-charcoal;
-        color: $color-white;
-      }
+    background-color: $color-gray-dark;
+    .inner {
+      background-color: $color-charcoal;
+      color: $color-white;
     }
   }
 }
