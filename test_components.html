@@ -17,10 +17,13 @@
 
     <script src="src/CenterText.js"></script>
     <link rel="stylesheet" type="text/css" href="src/CenterText.css">
+    <script src="src/SwitchBinary.js"></script>
+    <link rel="stylesheet" type="text/css" href="src/SwitchBinary.css">
     <link rel="stylesheet" type="text/css" href="../MRHenniger_JS_Utilities/basic.css">
 
     <script>
         customElements.define("center-text", CenterText);
+        customElements.define("switch-binary", SwitchBinary);
 
         function pageLoaded() {
             testLabel('Component Creation');
@@ -32,28 +35,138 @@
             let container = scratch.find('.container').first();
             container.css('width', '200px').css('height', '100px');//.css('border', '1px solid red');
 
+
+
+            // Center Text
+            //=============
+
+            container.innerHTMLWipe();
             container.innerHTML(`<center-text style="dark">dom created 1</center-text>`);
             let subjectDom = container.find('center-text').first();
             let subjectObj = new CenterText(null, null, subjectDom);
-            testCompare("Test 1a - CenterText", 'dom created 1', subjectDom.find('.inner').first().innerHTML().str());
+            testCompare("Test CT1a - CenterText", 'dom created 1', subjectDom.find('.inner').first().innerHTML().str());
             subjectObj.reviseData({"txt": "revised 1"});
-            testCompare("Test 1b - CenterText", 'revised 1', subjectDom.find('.inner').first().innerHTML().str());
+            testCompare("Test CT1b - CenterText", 'revised 1', subjectDom.find('.inner').first().innerHTML().str());
 
             container.innerHTMLWipe();
             container.innerHTML(`<center-text/>`);
             subjectDom = container.find('center-text').first();
             subjectObj = new CenterText(null, null, subjectDom);
-            testCompare("Test 2a - CenterText", '', subjectDom.find('.inner').first().innerHTML().str());
+            testCompare("Test CT2a - CenterText", '', subjectDom.find('.inner').first().innerHTML().str());
             subjectObj.reviseData({"txt": "revised 2"});
             subjectObj.getCore().addClass('medium');
-            testCompare("Test 2b - CenterText", "revised 2", subjectDom.find('.inner').first().innerHTML().str());
+            testCompare("Test CT2b - CenterText", "revised 2", subjectDom.find('.inner').first().innerHTML().str());
 
             container.innerHTMLWipe();
             subjectObj = new CenterText(container, {"txt": "js created", "style": "dark"});
             subjectDom = subjectObj.getCore();
-            testCompare("Test 3a - CenterText", 'js created', subjectDom.find('.inner').first().innerHTML().str());
+            testCompare("Test CT3a - CenterText", 'js created', subjectDom.find('.inner').first().innerHTML().str());
             subjectObj.reviseData({"txt": "revised"});
-            testCompare("Test 3b - CenterText", 'revised', subjectDom.find('.inner').first().innerHTML().str());
+            testCompare("Test CT3b - CenterText", 'revised', subjectDom.find('.inner').first().innerHTML().str());
+
+
+
+            // Switch Binary
+            //=============== <switch-binary class="aBcDeFgHiJ" state="on" size="medium" style="blue" ontxt="O" offtxt="X"></switch-binary>
+
+            // Test states
+            container.innerHTMLWipe();
+            container.innerHTML(`<switch-binary state="on"></switch-binary>`);
+            subjectDom = container.find('switch-binary').first();
+            testCompare("Test SB1a - Switch Binary State On", true, subjectDom.hasClass('stateon'));
+            testCompare("Test SB1b - Switch Binary State On", false, subjectDom.hasClass('sb-small'));
+            testCompare("Test SB1c - Switch Binary State On", true,  subjectDom.hasClass('sb-medium'));
+            testCompare("Test SB1d - Switch Binary State On", false, subjectDom.hasClass('sb-large'));
+            container.innerHTMLWipe();
+            container.innerHTML(`<switch-binary state="off"></switch-binary>`);
+            subjectDom = container.find('switch-binary').first();
+            testCompare("Test SB1e - Switch Binary State Off", true, subjectDom.hasClass('stateoff'));
+            testCompare("Test SB1f - Switch Binary State On", false, subjectDom.hasClass('sb-small'));
+            testCompare("Test SB1g - Switch Binary State On", true,  subjectDom.hasClass('sb-medium'));
+            testCompare("Test SB1h - Switch Binary State On", false, subjectDom.hasClass('sb-large'));
+            container.innerHTMLWipe();
+            container.innerHTML(`<switch-binary></switch-binary>`);
+            subjectDom = container.find('switch-binary').first();
+            testCompare("Test SB1i - Switch Binary State Default", true, subjectDom.hasClass('stateoff'));
+            testCompare("Test SB1j - Switch Binary State On", false, subjectDom.hasClass('sb-small'));
+            testCompare("Test SB1k - Switch Binary State On", true,  subjectDom.hasClass('sb-medium'));
+            testCompare("Test SB1l - Switch Binary State On", false, subjectDom.hasClass('sb-large'));
+
+            // Test size
+            container.innerHTMLWipe();
+            container.innerHTML(`<switch-binary size="sb-small"></switch-binary>`);
+            subjectDom = container.find('switch-binary').first();
+            testCompare("Test SB2a - Switch Binary Size Small",  true,  subjectDom.hasClass('sb-small'));
+            testCompare("Test SB2b - Switch Binary Size Small",  false, subjectDom.hasClass('sb-medium'));
+            testCompare("Test SB2c - Switch Binary State Small", false, subjectDom.hasClass('sb-large'));
+            container.innerHTMLWipe();
+            container.innerHTML(`<switch-binary size="medium"></switch-binary>`);
+            subjectDom = container.find('switch-binary').first();
+            testCompare("Test SB2d - Switch Binary Size Medium",  false,  subjectDom.hasClass('sb-small'));
+            testCompare("Test SB2e - Switch Binary Size Medium",  true,   subjectDom.hasClass('sb-medium'));
+            testCompare("Test SB2f - Switch Binary State Medium", false,  subjectDom.hasClass('sb-large'));
+            container.innerHTMLWipe();
+            container.innerHTML(`<switch-binary size="sb-large"></switch-binary>`);
+            subjectDom = container.find('switch-binary').first();
+            testCompare("Test SB2g - Switch Binary Size Large",  false,  subjectDom.hasClass('sb-small'));
+            testCompare("Test SB2h - Switch Binary Size Large",  false,  subjectDom.hasClass('sb-medium'));
+            testCompare("Test SB2i - Switch Binary State Large", true,   subjectDom.hasClass('sb-large'));
+            container.innerHTMLWipe();
+            container.innerHTML(`<switch-binary></switch-binary>`);
+            subjectDom = container.find('switch-binary').first();
+            testCompare("Test SB2j - Switch Binary Size Default",  false,  subjectDom.hasClass('sb-small'));
+            testCompare("Test SB2k - Switch Binary Size Default",  true,   subjectDom.hasClass('sb-medium'));
+            testCompare("Test SB2l - Switch Binary State Default", false,  subjectDom.hasClass('sb-large'));
+
+            // Test style
+            container.innerHTMLWipe();
+            container.innerHTML(`<switch-binary style="sb-blue"></switch-binary>`);
+            subjectDom = container.find('switch-binary').first();
+            testCompare("Test SB2a - Switch Binary Style Blue", true,  subjectDom.hasClass('sb-blue'));
+            testCompare("Test SB2b - Switch Binary Style Blue", false, subjectDom.hasClass('sb-red'));
+            testCompare("Test SB2c - Switch Binary Style Blue", false, subjectDom.hasClass('sb-grey'));
+            container.innerHTMLWipe();
+            container.innerHTML(`<switch-binary style="red"></switch-binary>`);
+            subjectDom = container.find('switch-binary').first();
+            testCompare("Test SB2d - Switch Binary Style Red", false, subjectDom.hasClass('sb-blue'));
+            testCompare("Test SB2e - Switch Binary Size Red",  true,  subjectDom.hasClass('sb-red'));
+            testCompare("Test SB2f - Switch Binary State Red", false, subjectDom.hasClass('sb-grey'));
+            container.innerHTMLWipe();
+            container.innerHTML(`<switch-binary style="sb-grey"></switch-binary>`);
+            subjectDom = container.find('switch-binary').first();
+            testCompare("Test SB2g - Switch Binary Style Grey", false, subjectDom.hasClass('sb-blue'));
+            testCompare("Test SB2h - Switch Binary Style Grey", false, subjectDom.hasClass('sb-red'));
+            testCompare("Test SB2i - Switch Binary Style Grey", true,  subjectDom.hasClass('sb-grey'));
+            container.innerHTMLWipe();
+            container.innerHTML(`<switch-binary></switch-binary>`);
+            subjectDom = container.find('switch-binary').first();
+            testCompare("Test SB2j - Switch Binary Style Default", false, subjectDom.hasClass('sb-blue'));
+            testCompare("Test SB2k - Switch Binary Size Default",  false, subjectDom.hasClass('sb-red'));
+            testCompare("Test SB2l - Switch Binary State Default", false, subjectDom.hasClass('sb-grey'));
+
+            // Test texts
+            container.innerHTMLWipe();
+            container.innerHTML(`<switch-binary ontxt="aaa"></switch-binary>`);
+            subjectDom = container.find('switch-binary').first();
+            testCompare("Test SB3a - Switch Binary On Text", "aaa", subjectDom.find('.sb-ontxt').first().innerHTML().str());
+            testCompare("Test SB3b - Switch Binary On Text", "",    subjectDom.find('.sb-offtxt').first().innerHTML().str());
+            container.innerHTMLWipe();
+            container.innerHTML(`<switch-binary offtxt="bbb"></switch-binary>`);
+            subjectDom = container.find('switch-binary').first();
+            testCompare("Test SB3c - Switch Binary Off Text", "",    subjectDom.find('.sb-ontxt').first().innerHTML().str());
+            testCompare("Test SB3d - Switch Binary Off Text", "bbb", subjectDom.find('.sb-offtxt').first().innerHTML().str());
+
+            // Insertion into the dom tested above
+
+            // Test JS Created
+            container.innerHTMLWipe();
+            subjectObj = new SwitchBinary(container, {"txt": "js created", "style": "dark"});
+            subjectDom = subjectObj.getCore();
+            testCompare("Test CT3a - CenterText", 'js created', subjectDom.find('.inner').first().innerHTML().str());
+            subjectObj.reviseData({"txt": "revised"});
+            testCompare("Test CT3b - CenterText", 'revised', subjectDom.find('.inner').first().innerHTML().str());
+
+
 
         }
     </script>

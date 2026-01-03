@@ -1,8 +1,10 @@
 {
   "css": [
+    "BinarySwitch.css",
     "CenterText.css"
   ],
   "js": [
+    "BinarySwitch.js",
     "CenterText.js"
   ]
 }

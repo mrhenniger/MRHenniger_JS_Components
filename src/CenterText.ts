@@ -13,7 +13,7 @@ class CenterText extends Components {
             const style = params.style ?? '';
             // @ts-ignore - The following line is constructed correctly
             const text = params.txt ?? '';
-            const identifier = new Strings().random(10, 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz').str();
+            const identifier = this.__generateIdentifier();
             const eleStr = `<center-text class="${identifier}" style="${style}">${text}</center-text>`;
             theParent.innerHTMLAppend(eleStr);
 
@@ -32,6 +32,7 @@ class CenterText extends Components {
             const text = this.__core.find('.inner').first().innerHTML().str();
             this.__data = {txt: text};
 
+// TODO:  this.__style should be converted to an attribute
             this.__style = '';
             if (this.__core.hasClass('light')) {
                 this.__style = 'light';
@@ -54,14 +55,12 @@ class CenterText extends Components {
             const attStyle = [...this.attributes].filter((attr) => attr.nodeName === 'style');
             this.__style = attStyle.length > 0 ? String(attStyle[0].nodeValue) : '';
 
-            // Attributes
-            this.__clearAttributes();
-
             // Data
             // @ts-ignore - innerHTML() returns a Strings
             const newData = {txt: this.__core.innerHTML().str()};
 
             // Render
+            this.__clearAttributes();
             this.__apply(newData); // Replaces the innerHTML text with the templated HTML
             if (this.__style !== '') {
                 this.__core!.addClass(this.__style);

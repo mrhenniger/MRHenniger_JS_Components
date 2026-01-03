@@ -1,0 +1,212 @@
+@import "../css/basic.scss";
+
+switch-binary {
+  position: relative;
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center; // vertical
+  align-content: center; // horizontal
+
+  .sb-perim {
+    flex-grow: 1;
+    flex-shrink: 0;
+
+    border-style: solid;
+    border-color: transparent;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: left;
+    align-items: stretch; // vertical
+    align-content: stretch; // vertical
+
+    .sb-spacer {
+      transition: all 0.5s ease-in-out;
+    }
+
+    .sb-slide {
+      flex-grow: 0;
+      flex-shrink: 0;
+
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-evenly;
+      align-items: stretch;
+      align-content: stretch;
+
+      .sb-ontxt {
+        transition: all 0.5s ease-in-out;
+      }
+      .sb-offtxt {
+        transition: all 0.5s ease-in-out;
+      }
+    }
+  }
+
+  &.sb-small { // Horizontal:  M1 + B1 + P1 + (S10 + G5 + S10) P1 + B1 + M1 = 26px
+    width: 31px;
+    height: 16px;
+
+    .sb-perim {
+      margin: 1px;
+      border-width: 1px;
+      padding: 1px;
+
+      line-height: 8px;
+      font-size: 8px;
+      font-weight: $fontNorm;
+      font-family: $fontArial;
+
+      .sb-slide {
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+
+        .sb-ontxt {
+          padding-top: 1px;
+          padding-left: 1px;
+        }
+        .sb-offtxt {
+          padding-top: 1px;
+          padding-left: 1px;
+        }
+      }
+    }
+  }
+  &.sb-medium { // Horizontal:  M2 + B1 + P2 + (S16 + G8 + S16) P2 + B1 + M2 = 42px
+    width: 60px;
+    height: 26px;
+
+    .sb-perim {
+      margin: 2px;
+      border-width: 1px;
+      padding: 2px;
+
+      line-height:  14px;
+      font-size: 14px;
+      font-weight: $fontNorm;
+      font-family: $fontArial;
+
+      .sb-slide {
+        width: 16px;
+        height: 16px;
+        border-radius: 8px;
+
+        .sb-ontxt {
+          padding-top: 1px;
+          padding-left: 1px;
+        }
+        .sb-offtxt {
+          padding-top: 1px;
+          padding-left: 1px;
+        }
+      }
+    }
+  }
+  &.sb-large { // Horizontal:  M3 + B2 + P3 + (S20 + G10 +  S20) P3 + B2 + M3 = 56px
+    width: 66px;
+    height: 36px;
+
+    .sb-perim {
+      margin: 3px;
+      border-width: 2px;
+      padding: 3px;
+
+      line-height:  18px;
+      font-size: 18px;
+      font-weight: $fontBold;
+      font-family: $fontArial;
+
+      .sb-slide {
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+
+        .sb-ontxt {
+          padding-top: 1px;
+          padding-left: 1px;
+        }
+        .sb-offtxt {
+          padding-top: 1px;
+          padding-left: 1px;
+        }
+      }
+    }
+  }
+
+  &.stateon {
+    .sb-perim {
+      .sb-spacer {
+        flex-grow: 0;
+        flex-shrink: 1;
+      }
+
+      .sb-slide {
+        .sb-offtxt {
+          width: 0px;
+          height: 0px;
+          display: none;
+          visibility: hidden;
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &.stateoff {
+    .sb-perim {
+      .sb-spacer {
+        flex-grow: 1;
+        flex-shrink: 0;
+      }
+
+      .sb-slide {
+        .sb-ontxt {
+          width: 0px;
+          height: 0px;
+          display: none;
+          visibility: hidden;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &.sb-blue {
+    background: $color-blue-facebook;
+    .sb-perim {
+      border-color: $color-blue;
+
+      .sb-slide {
+        background: $color-blue;
+        color: $color-gray-facebook;
+      }
+    }
+  }
+  &.sb-red {
+    background: $color-salmon;
+    .sb-perim {
+      border-color: $color-red;
+
+      .sb-slide {
+        background: $color-red;
+      }
+    }
+  }
+  &.sb-grey {
+    background: $color-gray;
+    .sb-perim {
+      border-color: $color-gray-dark;
+
+      .sb-slide {
+        background: $color-gray-dark;
+      }
+    }
+  }
+}

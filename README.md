@@ -20,9 +20,14 @@ https://www.linkedin.com/in/mikehenniger/
 
 Revision log...
 
-V2 - Nov 30 - Converted Center Text to comply with the new version of Component.ts which is now using web components as
-              a base.  It is anticipated there will be further changes moving some functionality from CenterText.ts to 
-              Component.ts.
+V3 - Jan 3 - Added a new prototype component, Switch Binary.  This is a toggle switch which tracks a binary state.
+             The plan is to create a few more prototype components, then review and refactor Component.ts.
+
+2026:  Happy new year!!!!!!!
+
+V2 - Nov 30 - Converted the prototype component, Center Text, to comply with the new version of Component.ts which is
+              now using web components as a base.  It is anticipated there will be further changes moving some 
+              functionality from CenterText.ts to Component.ts.
 
 V1 - July 13 - Added the first component, Center Text.  Simply centers text in a div.  Has some simple styling enums, 
                but they are not fancy.
