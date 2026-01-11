@@ -1,0 +1,63 @@
+@import "../css/basic.scss";
+
+input-text {
+  display: inline-block;
+
+  input {
+    border-width: 0;
+
+    &.it-small {
+
+    }
+    &.it-medium {
+
+    }
+    &.it-large {
+
+    }
+  }
+
+  &.it-small { // Height:  M1 + B1 + P1 + H10 + P1 + B1 + M1 = 16
+    margin: 1px;
+    border-width: 1px;
+    padding: 1px;
+
+    input {
+      font-size: 10px;
+      line-height: 10px;
+    }
+  }
+  &.it-medium { // Height:  M2 + B1 + P2 + H14 + P2 + B1 + M2 = 24
+    margin: 2px;
+    border-width: 1px;
+    padding: 2px;
+
+    input {
+      font-size: 14px;
+      line-height: 14px;
+    }
+  }
+  &.it-large { // Height:  M3 + B2 + P3 + H18 + P3 + B2 + M3 = 34
+    margin: 3px;
+    border-width: 2px;
+    padding: 3px;
+
+    input {
+      font-size: 18px;
+      line-height: 18px;
+    }
+  }
+
+  &.it-blue {
+    background: $color-blue-facebook;
+    border-color: $color-blue;
+  }
+  &.it-red {
+    background: $color-salmon;
+    border-color: $color-red;
+  }
+  &.it-grey {
+    background: $color-gray;
+    border-color: $color-gray-dark;
+  }
+}

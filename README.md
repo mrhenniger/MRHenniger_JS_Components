@@ -20,6 +20,9 @@ https://www.linkedin.com/in/mikehenniger/
 
 Revision log...
 
+V4 - Jan 11 - Added a new input text element, InputText. *NOTE:  There is a bug where it is not allowing user typed 
+              input in the input element.  Still need to debug.
+
 V3 - Jan 3 - Added a new prototype component, Switch Binary.  This is a toggle switch which tracks a binary state.
              The plan is to create a few more prototype components, then review and refactor Component.ts.
 

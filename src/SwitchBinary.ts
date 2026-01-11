@@ -71,7 +71,7 @@ class SwitchBinary extends Components {
                 offTxt: offTxt
             };
 
-            let size = 'sb-medium'
+            let size = 'sb-medium';
                 if (this.__core.hasClass('sb-small')) {
                     size = 'sb-small';
                 } else if (this.__core.hasClass('sb-medium')) {

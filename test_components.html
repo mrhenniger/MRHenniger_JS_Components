@@ -15,15 +15,18 @@
     <!-- <script src="ComponentsTest.js"></script> -->
     <script src="../MRHenniger_JS_Utilities/testUtilities.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="../MRHenniger_JS_Utilities/basic.css">
+
     <script src="src/CenterText.js"></script>
     <link rel="stylesheet" type="text/css" href="src/CenterText.css">
     <script src="src/SwitchBinary.js"></script>
     <link rel="stylesheet" type="text/css" href="src/SwitchBinary.css">
-    <link rel="stylesheet" type="text/css" href="../MRHenniger_JS_Utilities/basic.css">
-
+    <script src="src/InputText.js"></script>
+    <link rel="stylesheet" type="text/css" href="src/InputText.css">
     <script>
         customElements.define("center-text", CenterText);
         customElements.define("switch-binary", SwitchBinary);
+        customElements.define("input-text", InputText);
 
         function pageLoaded() {
             testLabel('Component Creation');
@@ -160,14 +163,160 @@
 
             // Test JS Created
             container.innerHTMLWipe();
-            subjectObj = new SwitchBinary(container, {"txt": "js created", "style": "dark"});
+            subjectObj = new SwitchBinary(container, {"onTxt": "aaa", "offTxt": "bbb"});
             subjectDom = subjectObj.getCore();
-            testCompare("Test CT3a - CenterText", 'js created', subjectDom.find('.inner').first().innerHTML().str());
-            subjectObj.reviseData({"txt": "revised"});
-            testCompare("Test CT3b - CenterText", 'revised', subjectDom.find('.inner').first().innerHTML().str());
+            testCompare("Test SB4a - Switch Binary Off JS Created", "aaa", subjectDom.find('.sb-ontxt').first().innerHTML().str());
+            testCompare("Test SB4b - Switch Binary Off JS Created", "bbb", subjectDom.find('.sb-offtxt').first().innerHTML().str());
 
 
 
+            // Input Text
+            //============
+            // <input-text val="abc123" req="false" ro="false" minLen="1" maxLen="10" len="5" spell="true" ph="stuff" size="it-medium" style="it-blue"/>
+
+            container.innerHTMLWipe();
+            container.innerHTML(`<input-text val="abc123" req="false" ro="false" minlen="1" maxlen="10" len="5" spell="true" ph="stuff" size="it-small" style="it-blue"/>`);
+            subjectDom = container.find('input-text').first();
+            let inputEle = subjectDom.find('input').first();
+            testCompare("Test IT1a - Input Text - Dom Instantiated", "abc123", inputEle.att('value'));
+            testCompare("Test IT1b - Input Text - Dom Instantiated", null,     inputEle.att('required'));
+            testCompare("Test IT1c - Input Text - Dom Instantiated", "false",  inputEle.att('readonly'));
+            testCompare("Test IT1d - Input Text - Dom Instantiated", "1",      inputEle.att('minlength'));
+            testCompare("Test IT1e - Input Text - Dom Instantiated", "10",     inputEle.att('maxlength'));
+            testCompare("Test IT1f - Input Text - Dom Instantiated", "5",      inputEle.att('size'));
+            testCompare("Test IT1g - Input Text - Dom Instantiated", "true",   inputEle.att('spellcheck'));
+            testCompare("Test IT1h - Input Text - Dom Instantiated", "stuff", inputEle.att('placeholder'));
+            testCompare("Test IT1i - Input Text - Dom Instantiated", true,  subjectDom.hasClass('it-small'));
+            testCompare("Test IT1j - Input Text - Dom Instantiated", false, subjectDom.hasClass('it-medium'));
+            testCompare("Test IT1k - Input Text - Dom Instantiated", false, subjectDom.hasClass('it-large'));
+            testCompare("Test IT1l - Input Text - Dom Instantiated", true,  subjectDom.hasClass('it-blue'));
+            testCompare("Test IT1m - Input Text - Dom Instantiated", false, subjectDom.hasClass('it-red'));
+            testCompare("Test IT1n - Input Text - Dom Instantiated", false, subjectDom.hasClass('it-grey'));
+
+            container.innerHTMLWipe();
+            container.innerHTML(`<input-text val="123abc" req="true" ro="true" minlen="1" maxlen="10" len="5" spell="true" ph="stuff" size="it-medium" style="it-red"/>`);
+            subjectDom = container.find('input-text').first();
+            inputEle = subjectDom.find('input').first();
+            testCompare("Test IT2a - Input Text - Dom Instantiated", "123abc", inputEle.att('value'));
+            testCompare("Test IT2b - Input Text - Dom Instantiated", "",       inputEle.att('required'));
+            testCompare("Test IT2c - Input Text - Dom Instantiated", "true",  inputEle.att('readonly'));
+            testCompare("Test IT2d - Input Text - Dom Instantiated", "1",      inputEle.att('minlength'));
+            testCompare("Test IT2e - Input Text - Dom Instantiated", "10",     inputEle.att('maxlength'));
+            testCompare("Test IT2f - Input Text - Dom Instantiated", "5",      inputEle.att('size'));
+            testCompare("Test IT2g - Input Text - Dom Instantiated", "true",   inputEle.att('spellcheck'));
+            testCompare("Test IT2h - Input Text - Dom Instantiated", "stuff", inputEle.att('placeholder'));
+            testCompare("Test IT2i - Input Text - Dom Instantiated", false, subjectDom.hasClass('it-small'));
+            testCompare("Test IT2j - Input Text - Dom Instantiated", true,  subjectDom.hasClass('it-medium'));
+            testCompare("Test IT2k - Input Text - Dom Instantiated", false, subjectDom.hasClass('it-large'));
+            testCompare("Test IT2l - Input Text - Dom Instantiated", false, subjectDom.hasClass('it-blue'));
+            testCompare("Test IT2m - Input Text - Dom Instantiated", true,  subjectDom.hasClass('it-red'));
+            testCompare("Test IT2n - Input Text - Dom Instantiated", false, subjectDom.hasClass('it-grey'));
+
+            container.innerHTMLWipe();
+            container.innerHTML(`<input-text val="" ph="stuff" size="it-large" selectable="true" style="it-grey"/>`);
+            subjectDom = container.find('input-text').first();
+            inputEle = subjectDom.find('input').first();
+            testCompare("Test IT3a - Input Text - Dom Instantiated", "",      inputEle.att('value'));
+            testCompare("Test IT3b - Input Text - Dom Instantiated", null,    inputEle.att('required'));
+            testCompare("Test IT3c - Input Text - Dom Instantiated", "false", inputEle.att('readonly'));
+            testCompare("Test IT3d - Input Text - Dom Instantiated", "",      inputEle.att('minlength'));
+            testCompare("Test IT3e - Input Text - Dom Instantiated", "",      inputEle.att('maxlength'));
+            testCompare("Test IT3f - Input Text - Dom Instantiated", "",      inputEle.att('size'));
+            testCompare("Test IT3g - Input Text - Dom Instantiated", "false", inputEle.att('spellcheck'));
+            testCompare("Test IT3h - Input Text - Dom Instantiated", "stuff", inputEle.att('placeholder'));
+            testCompare("Test IT3i - Input Text - Dom Instantiated", false, subjectDom.hasClass('it-small'));
+            testCompare("Test IT3j - Input Text - Dom Instantiated", false, subjectDom.hasClass('it-medium'));
+            testCompare("Test IT3k - Input Text - Dom Instantiated", true,  subjectDom.hasClass('it-large'));
+            testCompare("Test IT3l - Input Text - Dom Instantiated", false, subjectDom.hasClass('it-blue'));
+            testCompare("Test IT3m - Input Text - Dom Instantiated", false, subjectDom.hasClass('it-red'));
+            testCompare("Test IT3n - Input Text - Dom Instantiated", true,  subjectDom.hasClass('it-grey'));
+
+            container.innerHTMLWipe();
+            subjectObj = new InputText(container, {
+                "val": "abc123",
+                "req": true,
+                "ro": true,
+                "minLen": "1",
+                "maxLen": 10,
+                "len": 5,
+                "spell": true,
+                "ph": "placeholder stuff",
+                "size": "small",
+                "style": "blue"
+            });
+            subjectDom = subjectObj.getCore();
+            testCompare("Test IT4a - Input Text - JS Instantiated", true, subjectDom.hasClass('it-small'));
+            testCompare("Test IT4b - Input Text - JS Instantiated", false, subjectDom.hasClass('it-medium'));
+            testCompare("Test IT4c - Input Text - JS Instantiated", false, subjectDom.hasClass('it-large'));
+            testCompare("Test IT4d - Input Text - JS Instantiated", true, subjectDom.hasClass('it-blue'));
+            testCompare("Test IT4e - Input Text - JS Instantiated", false, subjectDom.hasClass('it-red'));
+            testCompare("Test IT4f - Input Text - JS Instantiated", false, subjectDom.hasClass('it-grey'));
+            inputEle = subjectDom.find('input').first();
+            testCompare("Test IT4g - Input Text - JS Instantiated", "abc123", inputEle.att('value'));
+            testCompare("Test IT4h - Input Text - JS Instantiated", true, inputEle.hasAtt('required'));
+            testCompare("Test IT4i - Input Text - JS Instantiated", "true", inputEle.att('readonly'));
+            testCompare("Test IT4j - Input Text - JS Instantiated", "1", inputEle.att('minlength'));
+            testCompare("Test IT4k - Input Text - JS Instantiated", "10", inputEle.att('maxlength'));
+            testCompare("Test IT4l - Input Text - JS Instantiated", "5", inputEle.att('size'));
+            testCompare("Test IT4m - Input Text - JS Instantiated", "true", inputEle.att('spellcheck'));
+            testCompare("Test IT4n - Input Text - JS Instantiated", "placeholder stuff", inputEle.att('placeholder'));
+
+            container.innerHTMLWipe();
+            subjectObj = new InputText(container, {
+                "val": "123abc",
+                "req": false,
+                "ro": false,
+                "minLen": "2",
+                "maxLen": 20,
+                "len": 10,
+                "spell": false,
+                "ph": "stuff goes here",
+                "size": "it-large",
+                "style": "it-grey"
+            });
+            subjectDom = subjectObj.getCore();
+            testCompare("Test IT5a - Input Text - JS Instantiated", false, subjectDom.hasClass('it-small'));
+            testCompare("Test IT5b - Input Text - JS Instantiated", false, subjectDom.hasClass('it-medium'));
+            testCompare("Test IT5c - Input Text - JS Instantiated", true, subjectDom.hasClass('it-large'));
+            testCompare("Test IT5d - Input Text - JS Instantiated", false, subjectDom.hasClass('it-blue'));
+            testCompare("Test IT5e - Input Text - JS Instantiated", false, subjectDom.hasClass('it-red'));
+            testCompare("Test IT5f - Input Text - JS Instantiated", true, subjectDom.hasClass('it-grey'));
+            inputEle = subjectDom.find('input').first();
+            testCompare("Test IT5g - Input Text - JS Instantiated", "123abc", inputEle.att('value'));
+            testCompare("Test IT5h - Input Text - JS Instantiated", false, inputEle.hasAtt('required'));
+            testCompare("Test IT5i - Input Text - JS Instantiated", "false", inputEle.att('readonly'));
+            testCompare("Test IT5j - Input Text - JS Instantiated", "2", inputEle.att('minlength'));
+            testCompare("Test IT5k - Input Text - JS Instantiated", "20", inputEle.att('maxlength'));
+            testCompare("Test IT5l - Input Text - JS Instantiated", "10", inputEle.att('size'));
+            testCompare("Test IT5m - Input Text - JS Instantiated", "false", inputEle.att('spellcheck'));
+            testCompare("Test IT5n - Input Text - JS Instantiated", "stuff goes here", inputEle.att('placeholder'));
+
+            container.innerHTMLWipe();
+            container.innerHTML('<div class="cntr">0</div>');
+            subjectObj = new InputText(container, {
+                "val": "a",
+                "minLen": "10", "len": "15", "maxLen": "20",
+                "spell": "true",
+                "size": "it-large", "style": "it-grey"
+            });
+            subjectDom = subjectObj.getCore();
+            let counterEle = container.find('.cntr').first();
+            testCompare("Test IT6a - Input Text - Handlers", "0", counterEle.innerHTML().str());
+            subjectObj.addHandlers({change_inner: () => {
+                let counterEle = container.find('.cntr').first();
+                let val = parseInt(counterEle.innerHTML().str());
+                val++;
+                counterEle.innerHTML(String(val));
+            }});
+            testCompare("Test IT6b - Input Text - Handlers", "0", counterEle.innerHTML().str());
+            inputEle = subjectDom.find('.inner').first();
+            inputEle.__core.value = "x";
+            const simulatedEvent = new Event('change', { bubbles: false });
+            inputEle.__core.dispatchEvent(simulatedEvent);
+            testCompare("Test IT6b - Input Text - Handlers", "1", counterEle.innerHTML().str());
+            inputEle.__core.value = "xx";
+            inputEle.__core.dispatchEvent(simulatedEvent);
+            testCompare("Test IT6b - Input Text - Handlers", "2", counterEle.innerHTML().str());
         }
     </script>
 </head>

@@ -39,7 +39,7 @@ class CenterText extends Components {
             this.__attributes = {};
         }
         // Construction Method #3:  DOM Instantiated
-        //                          <center-text style='light'>Some Text Here</center-text>
+        //                          <center-text style='ct-light'>Some Text Here</center-text>
         else {
             // Capture this (component html element) as the core
             this.__core = new Dom(this);
