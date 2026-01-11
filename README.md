@@ -20,6 +20,8 @@ https://www.linkedin.com/in/mikehenniger/
 
 Revision log...
 
+V5 - Jan 12 - Bug fix for InputText.
+
 V4 - Jan 11 - Added a new input text element, InputText. *NOTE:  There is a bug where it is not allowing user typed 
               input in the input element.  Still need to debug.
 

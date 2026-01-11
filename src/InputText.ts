@@ -147,11 +147,9 @@ class InputText extends Components {
 
             let req = this.__getAttribute('req', '');
             req = req === 'true' ? 'required' : '';
-            //const reqBool = req === 'true';
 
             let ro = this.__getAttribute('ro', 'false');
-            ro = ro === 'true' ? 'true' : 'false';
-            //const roBool = ro === 'true';
+            ro = ro === 'true' ? 'readonly' : '';
 
             const minLen = this.__getAttribute('minlen', '');
             //const minLenNum = minLen === '' ? minLen : parseInt(minLen);
@@ -206,7 +204,7 @@ class InputText extends Components {
 
     protected __setTemplate(): void {
         this.__template = new Strings(
-            `<input type='text' class='inner' name='From' value='{{ val }}' {{ req }}  readonly='{{ ro }}' minlength='{{ minLen }}' maxlength='{{ maxLen }}' size='{{ len }}' spellcheck='{{ spell }}' placeholder='{{ ph }}'>`
+            `<input type='text' class='inner' name='From' value='{{ val }}' {{ req }}  {{ ro }} minlength='{{ minLen }}' maxlength='{{ maxLen }}' size='{{ len }}' spellcheck='{{ spell }}' placeholder='{{ ph }}'>`
         );
     }
 

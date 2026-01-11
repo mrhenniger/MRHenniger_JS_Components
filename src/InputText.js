@@ -121,10 +121,8 @@ class InputText extends Components {
             const val = this.__getAttribute('val', '');
             let req = this.__getAttribute('req', '');
             req = req === 'true' ? 'required' : '';
-            //const reqBool = req === 'true';
             let ro = this.__getAttribute('ro', 'false');
-            ro = ro === 'true' ? 'true' : 'false';
-            //const roBool = ro === 'true';
+            ro = ro === 'true' ? 'readonly' : '';
             const minLen = this.__getAttribute('minlen', '');
             //const minLenNum = minLen === '' ? minLen : parseInt(minLen);
             const maxLen = this.__getAttribute('maxlen', '');
@@ -168,7 +166,7 @@ class InputText extends Components {
         }
     }
     __setTemplate() {
-        this.__template = new Strings(`<input type='text' class='inner' name='From' value='{{ val }}' {{ req }}  readonly='{{ ro }}' minlength='{{ minLen }}' maxlength='{{ maxLen }}' size='{{ len }}' spellcheck='{{ spell }}' placeholder='{{ ph }}'>`);
+        this.__template = new Strings(`<input type='text' class='inner' name='From' value='{{ val }}' {{ req }}  {{ ro }} minlength='{{ minLen }}' maxlength='{{ maxLen }}' size='{{ len }}' spellcheck='{{ spell }}' placeholder='{{ ph }}'>`);
     }
     __setHandlers() { }
 }

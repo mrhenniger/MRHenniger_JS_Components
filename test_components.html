@@ -180,7 +180,7 @@
             let inputEle = subjectDom.find('input').first();
             testCompare("Test IT1a - Input Text - Dom Instantiated", "abc123", inputEle.att('value'));
             testCompare("Test IT1b - Input Text - Dom Instantiated", null,     inputEle.att('required'));
-            testCompare("Test IT1c - Input Text - Dom Instantiated", "false",  inputEle.att('readonly'));
+            testCompare("Test IT1c - Input Text - Dom Instantiated", null,     inputEle.att('readonly'));
             testCompare("Test IT1d - Input Text - Dom Instantiated", "1",      inputEle.att('minlength'));
             testCompare("Test IT1e - Input Text - Dom Instantiated", "10",     inputEle.att('maxlength'));
             testCompare("Test IT1f - Input Text - Dom Instantiated", "5",      inputEle.att('size'));
@@ -199,7 +199,7 @@
             inputEle = subjectDom.find('input').first();
             testCompare("Test IT2a - Input Text - Dom Instantiated", "123abc", inputEle.att('value'));
             testCompare("Test IT2b - Input Text - Dom Instantiated", "",       inputEle.att('required'));
-            testCompare("Test IT2c - Input Text - Dom Instantiated", "true",  inputEle.att('readonly'));
+            testCompare("Test IT2c - Input Text - Dom Instantiated", "",       inputEle.att('readonly'));
             testCompare("Test IT2d - Input Text - Dom Instantiated", "1",      inputEle.att('minlength'));
             testCompare("Test IT2e - Input Text - Dom Instantiated", "10",     inputEle.att('maxlength'));
             testCompare("Test IT2f - Input Text - Dom Instantiated", "5",      inputEle.att('size'));
@@ -218,7 +218,7 @@
             inputEle = subjectDom.find('input').first();
             testCompare("Test IT3a - Input Text - Dom Instantiated", "",      inputEle.att('value'));
             testCompare("Test IT3b - Input Text - Dom Instantiated", null,    inputEle.att('required'));
-            testCompare("Test IT3c - Input Text - Dom Instantiated", "false", inputEle.att('readonly'));
+            testCompare("Test IT3c - Input Text - Dom Instantiated", null,    inputEle.att('readonly'));
             testCompare("Test IT3d - Input Text - Dom Instantiated", "",      inputEle.att('minlength'));
             testCompare("Test IT3e - Input Text - Dom Instantiated", "",      inputEle.att('maxlength'));
             testCompare("Test IT3f - Input Text - Dom Instantiated", "",      inputEle.att('size'));
@@ -254,7 +254,7 @@
             inputEle = subjectDom.find('input').first();
             testCompare("Test IT4g - Input Text - JS Instantiated", "abc123", inputEle.att('value'));
             testCompare("Test IT4h - Input Text - JS Instantiated", true, inputEle.hasAtt('required'));
-            testCompare("Test IT4i - Input Text - JS Instantiated", "true", inputEle.att('readonly'));
+            testCompare("Test IT4i - Input Text - JS Instantiated", true, inputEle.hasAtt('readonly'));
             testCompare("Test IT4j - Input Text - JS Instantiated", "1", inputEle.att('minlength'));
             testCompare("Test IT4k - Input Text - JS Instantiated", "10", inputEle.att('maxlength'));
             testCompare("Test IT4l - Input Text - JS Instantiated", "5", inputEle.att('size'));
@@ -284,7 +284,7 @@
             inputEle = subjectDom.find('input').first();
             testCompare("Test IT5g - Input Text - JS Instantiated", "123abc", inputEle.att('value'));
             testCompare("Test IT5h - Input Text - JS Instantiated", false, inputEle.hasAtt('required'));
-            testCompare("Test IT5i - Input Text - JS Instantiated", "false", inputEle.att('readonly'));
+            testCompare("Test IT5i - Input Text - JS Instantiated", false, inputEle.hasAtt('readonly'));
             testCompare("Test IT5j - Input Text - JS Instantiated", "2", inputEle.att('minlength'));
             testCompare("Test IT5k - Input Text - JS Instantiated", "20", inputEle.att('maxlength'));
             testCompare("Test IT5l - Input Text - JS Instantiated", "10", inputEle.att('size'));
