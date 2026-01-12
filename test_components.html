@@ -57,7 +57,7 @@
             subjectObj = new CenterText(null, null, subjectDom);
             testCompare("Test CT2a - CenterText", '', subjectDom.find('.inner').first().innerHTML().str());
             subjectObj.reviseData({"txt": "revised 2"});
-            subjectObj.getCore().addClass('medium');
+            subjectObj.getCore().addClass('ct-medium');
             testCompare("Test CT2b - CenterText", "revised 2", subjectDom.find('.inner').first().innerHTML().str());
 
             container.innerHTMLWipe();

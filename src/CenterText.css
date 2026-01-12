@@ -994,19 +994,19 @@ center-text {
     color: #FFFFFF;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif; }
-  center-text.light {
+  center-text.ct-light {
     background-color: #EEEEEE; }
-    center-text.light .inner {
+    center-text.ct-light .inner {
       background-color: #ACAFB0;
       color: #616363; }
-  center-text.medium {
+  center-text.ct-medium {
     background-color: #ACAFB0; }
-    center-text.medium .inner {
+    center-text.ct-medium .inner {
       background-color: #616363;
       color: #000000; }
-  center-text.dark {
+  center-text.ct-dark {
     background-color: #616363; }
-    center-text.dark .inner {
+    center-text.ct-dark .inner {
       background-color: #3C3D3D;
       color: #FFFFFF; }
 

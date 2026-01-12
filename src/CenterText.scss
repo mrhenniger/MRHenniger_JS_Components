@@ -24,7 +24,7 @@ center-text {
     font-family: $fontArial;
   }
 
-  &.light {
+  &.ct-light {
     background-color: $color-gray-light;
     .inner {
       background-color: $color-gray;
@@ -32,7 +32,7 @@ center-text {
     }
  }
 
-  &.medium {
+  &.ct-medium {
     background-color: $color-gray;
     .inner {
       background-color: $color-gray-dark;
@@ -40,7 +40,7 @@ center-text {
     }
   }
 
-  &.dark {
+  &.ct-dark {
     background-color: $color-gray-dark;
     .inner {
       background-color: $color-charcoal;
