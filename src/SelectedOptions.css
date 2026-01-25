@@ -1,0 +1,24 @@
+select-options {
+  display: inline-block;
+}
+select-options .inner {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px;
+}
+select-options.so-small .inner {
+  font-size: 10px;
+  padding: 2px;
+}
+select-options.so-medium .inner {
+  font-size: 14px;
+  padding: 4px;
+}
+select-options.so-large .inner {
+  font-size: 18px;
+  padding: 6px;
+}
+
+/*# sourceMappingURL=SelectedOptions.css.map */

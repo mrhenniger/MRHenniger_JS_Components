@@ -317,6 +317,51 @@
             inputEle.__core.value = "xx";
             inputEle.__core.dispatchEvent(simulatedEvent);
             testCompare("Test IT6b - Input Text - Handlers", "2", counterEle.innerHTML().str());
+
+
+
+            // Select Dropdown
+            //================
+
+            // Test JS Creation with selection and options
+            container.innerHTMLWipe();
+            let opts = {"1": "Option One", "2": "Option Two"};
+            subjectObj = new SelectDropdown(container, {
+                options: opts,
+                val: "2",
+                size: "large",
+                req: true
+            });
+            subjectDom = subjectObj.getCore();
+            let selectEle = subjectDom.find('select').first();
+
+            testCompare("Test SD1a - Select Dropdown - JS Value", "2", selectEle.val());
+            testCompare("Test SD1b - Select Dropdown - JS Required", true, selectEle.hasAtt('required'));
+            testCompare("Test SD1c - Select Dropdown - Default Empty Option Exist", true, subjectDom.find('option[value=""]').first() !== null);
+            testCompare("Test SD1d - Select Dropdown - Option Count", 3, subjectDom.find('option').count());
+
+            // Test DOM instantiation via attribute
+            container.innerHTMLWipe();
+            container.innerHTML(`<select-dropdown val="1" options='{"1":"A","2":"B"}' size="small"></select-dropdown>`);
+            subjectDom = container.find('select-dropdown').first();
+            subjectObj = new SelectDropdown(null, null, subjectDom);
+            selectEle = subjectDom.find('select').first();
+
+            testCompare("Test SD2a - Select Dropdown - DOM Value", "1", selectEle.val());
+            testCompare("Test SD2b - Select Dropdown - DOM Style", true, subjectDom.hasClass('sd-small'));
+
+            // Test Default selection (empty)
+            container.innerHTMLWipe();
+            subjectObj = new SelectDropdown(container, {options: {"a": "Apple"}});
+            selectEle = subjectObj.getCore().find('select').first();
+            testCompare("Test SD3a - Select Dropdown - Default Empty Selected", "", selectEle.val());
+
+
+
+
+
+
+
         }
     </script>
 </head>
